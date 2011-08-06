@@ -153,10 +153,15 @@ LEAF_TYPES = ["GH_ISSUE",
               "GH_COMMIT",
               "GH_BRANCH",
               "GH_FILE",
+              "GH_USER",
               "VO_TASK",
               "VO_STORY",
               "VO_EPIC",
               "VO_PROJECT",
               "VO_ITERATION",
               "VO_GOAL",
-              "VO_ISSUE"]
+              "VO_ISSUE",
+              "VO_USER"]
+
+BOX_STATES = ["ACTIVE", "DEACTIVE"]
+
