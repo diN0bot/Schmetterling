@@ -46,7 +46,6 @@ def enum(*args, **kwargs):
       VowelSounds.ALL_ENUMS = ['a', 'e']
       VowelSounds.ALL_ENUM_VALUES = ['aaah', 'eeee']
     """
-
     class Enumerator(object):
         """
         Has immutable enumerator class attributes.
@@ -55,8 +54,8 @@ def enum(*args, **kwargs):
         def __setattr__(self, name, value):
             """ enumerated fields are read-only """
             raise NotImplementedError
-    return Enumerator()
 
+    return Enumerator()
 
 def enum_from_choices(tuples):
     return enum(**dict([(y, x) for x, y in tuples]))

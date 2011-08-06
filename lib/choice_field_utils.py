@@ -9,9 +9,9 @@ def create_type_choices(alist, func=_default_choicifier_func):
     for key in alist:
         abrv = func(key)
         if abrv in abrvs:
-            abrv += str(abrvs[abrv])
             abrvs[abrv] += 1
-        abrvs[abrv] = 1
+            abrv += str(abrvs[abrv] - 1)
+        abrvs[abrv] = 0
         tuples.append((abrv, key))
 
     return tuple(tuples)
