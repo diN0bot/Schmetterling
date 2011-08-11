@@ -3,6 +3,8 @@ from django.conf.urls.defaults import patterns, url
 from django.contrib import admin
 admin.autodiscover()
 
+# this is all wrong. should be an API with settings for the Version One and Git Hub interactions
+
 identifier_re = '[\w\d_-]+'
 for var in ['identifier',
             'outter_box',
