@@ -1,3 +1,4 @@
+from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
 from data_store.models import Box, Leaf, Person
 
@@ -9,6 +10,7 @@ class BoxResource(ModelResource):
 class LeafResource(ModelResource):
     class Meta:
             queryset = Leaf.objects.all()
+            authorization= Authorization()
 
 class PersonResource(ModelResource):
     class Meta:

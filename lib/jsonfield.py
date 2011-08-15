@@ -19,7 +19,10 @@ class JSONField(models.TextField):
         if isinstance(value, basestring):
             # when setting model fields, this will be called
             # with the python object.
-            return json.loads(value)
+            if value:
+                return json.loads(value)
+            else:
+                return '{}'
         else:
             return value
 

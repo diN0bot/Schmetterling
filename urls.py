@@ -13,6 +13,7 @@ v1_api.register(PersonResource())
 
 urlpatterns = patterns('',
     #url(r'^api/', include('data_store.client_api_urls')),
+    (r'^$', 'core.views.index'),
     (r'^api/', include(v1_api.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

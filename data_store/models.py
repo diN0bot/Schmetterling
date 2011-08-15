@@ -6,6 +6,7 @@ from lib import choice_field_utils
 from lib import enumerator
 from lib import jsonfield
 
+import unique_slugify
 
 def _leaf_choicifier(key):
     return key[:2] + key[3]
@@ -21,7 +22,7 @@ class Leaf(models.Model):
         # everything worth anything has a unique URL
     url = models.URLField(unique=True)
     # a slug type unique thing
-    identifier = models.SlugField(unique=True)
+    identifier = models.SlugField()
     # something human readable
     name = models.CharField(max_length=100)
     # the thing's data
@@ -29,6 +30,10 @@ class Leaf(models.Model):
     # the kind of thing
     type = models.CharField(max_length=choice_field_utils.max_length_item(TYPES.ALL_ENUMS),
                             choices=TYPES_CHOICES)
+
+    def save(self, **kwargs):
+        unique_slugify.unique_slugify(self, self.name, slug_field_name='identifier')
+        super(Leaf, self).save()
 
 class Person(models.Model):
     """
