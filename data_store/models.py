@@ -52,7 +52,7 @@ class Box(models.Model):
                                                             func=_leaf_choicifier)
     STATES = enumerator.enum_from_choices(STATES_CHOICES)
 
-    identifier = models.SlugField(unique=True)
+    identifier = models.SlugField()
     name = models.CharField(max_length=100)
     state = models.CharField(max_length=choice_field_utils.max_length_item(STATES.ALL_ENUMS),
                              choices=STATES_CHOICES)
