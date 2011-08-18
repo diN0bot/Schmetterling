@@ -22,47 +22,54 @@
     <script src="{{ STATIC_URL }}js/modernizr-2.0.js"></script>
 
     <script type="text/html" id="boxTemplate">
-      <p>{% templatetag openvariable %}name{% templatetag closevariable%}</p>
+      <div class="box droppable">
+        <p>{% templatetag openvariable %}name{% templatetag closevariable%}</p>
+      </div>
     </script>
 
     <script type="text/html" id="leafTemplate">
-      <div class="box span-4">
-        <h3>Leaf</h3>
-        <p>Name:{% templatetag openvariable %}name{% templatetag closevariable%}</p>
-        <p>Type:{% templatetag openvariable %}type{% templatetag closevariable%}</p>
-        <p>ID:{% templatetag openvariable %}id{% templatetag closevariable%}</p>
-        <p>UID:{% templatetag openvariable %}uid{% templatetag closevariable%}</p>
-        <p>URI:{% templatetag openvariable %}uri{% templatetag closevariable%}</p>
-        <p style="display:none">Data:{% templatetag openvariable %}data{% templatetag closevariable%}</p>
+      <div class="{% templatetag openvariable %}source{% templatetag closevariable%} draggable">
+        <div class="leafTitle">{% templatetag openvariable %}type{% templatetag closevariable%}</div>
+        <div class="leafContent">
+          <p>Name:{% templatetag openvariable %}name{% templatetag closevariable%}</p>
+          <p>ID:{% templatetag openvariable %}id{% templatetag closevariable%}</p>
+          <p>UID:{% templatetag openvariable %}uid{% templatetag closevariable%}</p>
+          <p>URI:{% templatetag openvariable %}uri{% templatetag closevariable%}</p>
+          <p style="display:none">Data:{% templatetag openvariable %}data{% templatetag closevariable%}</p>
+        </div>
       </div>
+    </script>
+
+    <script type="text/html" id="leavesTemplate">
+      <h2>Leaves</h2>
+      <div id="scrollBox">
+      </div>
+    </script>
+
+    <script type="text/html" id="boxesTemplate">
+      <h2>Boxes</h2>
     </script>
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
 {% block body %}
     <div id="container" class="container">
-        <header>
-
-        </header>
-
-        <div id="main" role="main">
-            {% block content %}{% endblock %}
-        </div>
-
-        <footer>
-
-        </footer>
+      <div id="cp" class="span-24 last">
+        <h2>Rackspace Boxes</h2>
+        <p> Control panel goes here </p>
+      </div>
+      <div id="boxes" class="span-12">
+      </div>
+      <div id="leaves" class="span-12 last">
+      </div>
     </div> <!-- end of #container -->
 
 
     {% if debug %}{% include 'includes/debug.html' %}{% endif %}
-    {% block javascript_library %}
     {% assets "js_lib" %}
       <script type ="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
 
-    {% endblock %}
-    {% block javascript %}
     <script>
     LEAF_API = "{%url api_dispatch_list api_name="v1" resource_name="leaf" %}?format=json";
     BOX_API = "{%url api_dispatch_list api_name="v1" resource_name="box" %}?format=json";
@@ -76,7 +83,6 @@
         App.init();
       });
     </script>
-    {% endblock %}
     <!--[if lt IE 7 ]>
     <script src="{{ STATIC_URL }}js/dd_belatedpng.js"></script>
     <script> DD_belatedPNG.fix('img, .png_bg');</script>

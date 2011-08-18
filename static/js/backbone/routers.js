@@ -1,18 +1,32 @@
 App.Routers.Main = Backbone.Router.extend({
   routes : {
-    "": "index"
+    "": "index",
+    "explore/:type/boxes_p:bpage/leaves_p:lpage": "explore"
   },
 
   index: function(){
+    new App.Views.Index();
+  },
+
+  explore: function(type, bpage, lpage){
   var leaves = new App.Collections.Leaves();
+  var boxes = new App.Collections.Boxes();
+
+  boxes.fetch({
+    error: function(){
+      new Error({ message: "Error loading leaves." });
+    }
+  });
+
   leaves.fetch({
     success: function(){
-      new App.Views.Index({ collection: leaves });
+      new App.Views.Explore({ leaves: leaves, boxes: boxes, bpage: bpage, lpage: lpage });
     },
     error: function(){
       new Error({ message: "Error loading leaves." });
     }
   });
+
   }
 });
 
