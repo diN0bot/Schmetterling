@@ -1,6 +1,5 @@
 db.sqlite
 *.pyc
 *.swp
-sync.py
 .webassets-cache/
 
