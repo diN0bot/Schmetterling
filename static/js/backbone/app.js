@@ -1,3 +1,4 @@
+/*
 var oldSync = Backbone.sync;
 
 Backbone.sync = function(method, model, success, error){
@@ -12,4 +13,11 @@ Backbone.sync = function(method, model, success, error){
         return success(resp);
     };
     return oldSync(method, model, newSuccess, error);
+};
+*/
+
+var App = {
+  Views : {},
+  Collections: {},
+  Routers: {},
 };

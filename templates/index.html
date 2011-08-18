@@ -1,7 +1,86 @@
-{% extends 'base.html' %}
+<!doctype html>
+{% load i18n %}
+{% load assets %}
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>{% block page_title %}{% trans "Schmetterling" %}{% endblock %}</title>
 
-{% block page_class %}home-page{% endblock %}
+    <meta name="description" content="{% block meta_description %}{% endblock %}" />
+    <meta name="author" content="{% block meta_author %}{% endblock %}" />
 
-{% block content %}
-   {# todo: Include the main content here #}
+    {% assets "css" %}
+      <link rel="stylesheet" href="{{ ASSET_URL }}" />
+    {% endassets %}
+
+    {% block css %}{% endblock %}
+
+    <script src="{{ STATIC_URL }}js/modernizr-2.0.js"></script>
+
+    <script type="text/html" id="boxTemplate">
+      <p>{% templatetag openvariable %}name{% templatetag closevariable%}</p>
+    </script>
+
+    <script type="text/html" id="leafTemplate">
+      <div class="box span-4">
+        <h3>Leaf</h3>
+        <p>Name:{% templatetag openvariable %}name{% templatetag closevariable%}</p>
+        <p>Type:{% templatetag openvariable %}type{% templatetag closevariable%}</p>
+        <p>ID:{% templatetag openvariable %}id{% templatetag closevariable%}</p>
+        <p>UID:{% templatetag openvariable %}uid{% templatetag closevariable%}</p>
+        <p>URI:{% templatetag openvariable %}uri{% templatetag closevariable%}</p>
+        <p style="display:none">Data:{% templatetag openvariable %}data{% templatetag closevariable%}</p>
+      </div>
+    </script>
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+{% block body %}
+    <div id="container" class="container">
+        <header>
+
+        </header>
+
+        <div id="main" role="main">
+            {% block content %}{% endblock %}
+        </div>
+
+        <footer>
+
+        </footer>
+    </div> <!-- end of #container -->
+
+
+    {% if debug %}{% include 'includes/debug.html' %}{% endif %}
+    {% block javascript_library %}
+    {% assets "js_lib" %}
+      <script type ="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% endblock %}
+    {% block javascript %}
+    <script>
+    LEAF_API = "{%url api_dispatch_list api_name="v1" resource_name="leaf" %}?format=json";
+    BOX_API = "{%url api_dispatch_list api_name="v1" resource_name="box" %}?format=json";
+    PERSON_API = "{%url api_dispatch_list api_name="v1" resource_name="person" %}?format=json";
+    </script>
+    {% assets "backbone" %}
+      <script type ="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <script type="text/javascript">
+      $(function() {
+        App.init();
+      });
+    </script>
+    {% endblock %}
+    <!--[if lt IE 7 ]>
+    <script src="{{ STATIC_URL }}js/dd_belatedpng.js"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg');</script>
+    <![endif]-->
 {% endblock %}
+</body>
+</html>
