@@ -1,6 +1,7 @@
 <!doctype html>
 {% load i18n %}
 {% load assets %}
+{% load icanhaz %}
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
@@ -21,34 +22,11 @@
 
     <script src="{{ STATIC_URL }}js/modernizr-2.0.js"></script>
 
-    <script type="text/html" id="boxTemplate">
-      <div class="box droppable">
-        <p>{% templatetag openvariable %}name{% templatetag closevariable%}</p>
-      </div>
-    </script>
+    {% icanhaz "boxTemplate" %}
+    {% icanhaz "leafTemplate" %}
+    {% icanhaz "leavesTemplate" %}
+    {% icanhaz "boxesTemplate" %}
 
-    <script type="text/html" id="leafTemplate">
-      <div class="{% templatetag openvariable %}source{% templatetag closevariable%} draggable">
-        <div class="leafTitle">{% templatetag openvariable %}type{% templatetag closevariable%}</div>
-        <div class="leafContent">
-          <p>Name:{% templatetag openvariable %}name{% templatetag closevariable%}</p>
-          <p>ID:{% templatetag openvariable %}id{% templatetag closevariable%}</p>
-          <p>UID:{% templatetag openvariable %}uid{% templatetag closevariable%}</p>
-          <p>URI:{% templatetag openvariable %}uri{% templatetag closevariable%}</p>
-          <p style="display:none">Data:{% templatetag openvariable %}data{% templatetag closevariable%}</p>
-        </div>
-      </div>
-    </script>
-
-    <script type="text/html" id="leavesTemplate">
-      <h2>Leaves</h2>
-      <div id="scrollBox">
-      </div>
-    </script>
-
-    <script type="text/html" id="boxesTemplate">
-      <h2>Boxes</h2>
-    </script>
 </head>
 
 <body class="{% block body_class %}{% endblock %}">

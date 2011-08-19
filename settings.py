@@ -118,7 +118,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
 )
 
-ICANHAZ_DIR = (
+ICANHAZ_DIRS = (
     os.path.join(PROJECT_PATH, 'templates/icanhaz'),
 )
 
