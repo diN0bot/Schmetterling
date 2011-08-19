@@ -1,0 +1,6 @@
+webassets
+django-icanhaz
+django-tastypie
+
+-e git+git@github.com:racker/py-github.git#egg=pygithub
+-e git+git@github.com:racker/py-versionone.git#egg=pyvo

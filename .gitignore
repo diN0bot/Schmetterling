@@ -2,4 +2,6 @@ db.sqlite
 *.pyc
 *.swp
 .webassets-cache/
+build/
+src/
 

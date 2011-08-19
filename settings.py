@@ -118,6 +118,10 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
 )
 
+ICANHAZ_DIR = (
+    os.path.join(PROJECT_PATH, 'templates/icanhaz'),
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -130,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     'django_assets',
+    'icanhaz',
 
     'core',
     'data_store',
