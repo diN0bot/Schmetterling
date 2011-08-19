@@ -20,7 +20,7 @@ App.Routers.Main = Backbone.Router.extend({
 
   leaves.fetch({
     success: function(){
-      new App.Views.Explore({ leaves: leaves, boxes: boxes, bpage: bpage, lpage: lpage });
+      new App.Views.Explore({ leaves: leaves, boxes: boxes, bpage: bpage, lpage: lpage, type:type });
     },
     error: function(){
       new Error({ message: "Error loading leaves." });
