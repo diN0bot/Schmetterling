@@ -3,12 +3,14 @@ from urllib2 import HTTPError
 
 import pyvo
 import pygithub
+import config
 
 import json
 
-vo = pyvo.VersionOne('', '')
-github = pygithub.Github('', '')
+vo = pyvo.VersionOne(config.usernamev1, config.passwordv1)
+github = pygithub.Github(config.usernamegh, config.passwordgh)
 
+"""
 sprints = vo.get_sprints()
 
 for sprint in sprints:
@@ -26,3 +28,10 @@ for sprint in sprints:
           raise
     except:
         continue
+"""
+
+issues = github.get_repository("/repos/racker/reach").get_issues()
+
+for issue_num, issue in issues.items():
+    print issue.title
+    print issue.url

@@ -4,4 +4,4 @@ db.sqlite
 .webassets-cache/
 build/
 src/
-
+config.py

@@ -8,9 +8,34 @@
    };
 }(jQuery));
 
+$(".text").live("keyup", function(e){
+  alert("name");
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    $(':button:contains("OK")').click();
+  }
+});
+
 $(".draggable").liveDraggable({ revert: "invalid" });
 
 $("#leaves").droppable({ hoverClass: "boxHover", accept: ".box .dropLeaf" });
+
+$(".box h4").live("click", function(){
+  var input, title, form;
+  title = $(this);
+  form = ich.boxNameFromTemplate();
+  input = $(form).find("input");
+  input.val(title.text());
+  $(form).dialog({
+      modal:true,
+      buttons:{
+        "OK": function(){
+          title.text(input.val());
+          $(this).dialog("close");
+        }
+      }
+    });
+});
 
 function addToBox($box, $item){
   var name, title, source;
