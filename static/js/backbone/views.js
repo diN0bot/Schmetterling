@@ -14,8 +14,12 @@ App.Views.Explore = Backbone.View.extend({
   },
 
   render: function() {
-    var prevLink = "#explore/" + this.type + "/boxes_p" + this.bpage.toString() + "/leaves_p" + (this.lpage-1)
-    var nextLink = "#explore/" + this.type + "/boxes_p" + this.bpage.toString() + "/leaves_p" + (Number(this.lpage)+1)
+    var prevLink, nextLink, prevPage, nextPage, maxPages;
+    maxPages = Math.ceil(this.leaves.length/9);
+    this.lpage == 1 ? prevPage = maxPages : prevPage = this.lpage-1;
+    this.lpage == maxPages ? nextPage = 1 : nextPage = Number(this.lpage)+1;
+    prevLink = "#explore/" + this.type + "/boxes_p" + this.bpage.toString() + "/leaves_p" + prevPage
+    nextLink = "#explore/" + this.type + "/boxes_p" + this.bpage.toString() + "/leaves_p" + nextPage
     $("#leaves").html(ich.leavesTemplate({"prevLink":prevLink, "nextLink":nextLink}));
     $("#boxes").html(ich.boxesTemplate());
     newBox();

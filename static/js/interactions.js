@@ -53,7 +53,7 @@ function addToBox($box, $item){
     $($box).append($item.draggable({ revert: "invalid" }));
     $("#boxes").children().each(function(i){
       if(this.children.length == 1 & $(this).find("h4").text() != "New Box"){
-        $(this).remove();
+        $(this).fadeOut(500, function() { $(this).remove(); });
        }
     });
   }
