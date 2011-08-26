@@ -107,6 +107,27 @@ a:hover { color: #036; }
   background: white;
 }
 
+.GH{
+  width: 140px;
+  border: 1px solid #979797;
+  margin: 5px;
+  float: left;
+}
+
+.GH > .leafTitle{
+  text-align: center;
+  padding-top:2px;
+  padding-bottom:2px;
+  color: #666;
+  background: #F1F1F1;
+  border-bottom: 4px solid #CCC;
+}
+
+.GH > .leafContent{
+  padding: 5px;
+  background: white;
+}
+
 .box{
   width: 100px;
   height: 100px;
@@ -138,6 +159,11 @@ a:hover { color: #036; }
   background: #292929;
   border-bottom: 3px solid #8D0A39;
   color: #E6E6E6;
+}
+
+.box .GH{
+  background: #F1F1F1;
+  color: #666;
 }
 
 ul#icons{

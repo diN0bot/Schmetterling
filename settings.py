@@ -167,11 +167,11 @@ APPEND_SLASH = True
 
 LEAF_TYPES = ["GH_ISSUE",
               "GH_PULL",
-              "GH_WIKI",
               "GH_COMMIT",
               "GH_BRANCH",
               "GH_FILE",
               "GH_USER",
+              "GH_REPO",
               "VO_TASK",
               "VO_STORY",
               "VO_EPIC",
