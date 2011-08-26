@@ -7,14 +7,14 @@ import config
 
 import json
 
-vo = pyvo.VersionOne(config.usernamev1, config.passwordv1)
-github = pygithub.Github(config.usernamegh, config.passwordgh)
+vo = pyvo.VersionOne(config.vo_user, config.vo_pass)
+github = pygithub.Github(config.gh_user, config.gh_pass)
 
-tasks = vo.get_tasks()
+stories = vo.get_stories()
 
-for task in tasks:
+for story in stories:
     try:
-      post_data = { 'url': task.url, 'data': task.get_dict(), 'name': task.name, 'type':'VO_ISSUE' }
+      post_data = { 'url': story.url, 'data': story.get_dict(), 'name': story.name, 'type':'VO_STORY' }
       post_data = json.dumps(post_data)
       post_data = post_data.encode('ascii', 'ignore')
       url = 'http://127.0.0.1:8000/api/v1/leaf/'

@@ -53,6 +53,10 @@ class Leaf(models.Model):
 
     def update_attributes(self):
         changed_dict = self.dictdiff(self._old_data, self.data)
+        if self.type == 'VO_STORY':
+            story = pyvo.story.story(pyvo.core.url_open(self.uri))
+            for key, item in changed_dict.items():
+                story.__setattr__(key, item)
         if self.type == 'VO_ISSUE':
             task = pyvo.task.task(pyvo.core.url_open(self.uri))
             for key, item in changed_dict.items():
